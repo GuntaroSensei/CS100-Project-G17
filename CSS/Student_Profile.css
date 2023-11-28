@@ -193,10 +193,64 @@ body {
     justify-content: center;
     align-items: center;
     border: 2px ridge black;
+    background-color: #F4F6F7;
 }
 
 .link_to_activity a {
     font-family: Archive;
     text-decoration: none;
     color: #434A4F;
+}
+
+.link_to_activity a:hover {
+    color: #C4CFD6;
+}
+
+@media only screen and (max-width:768px) {
+    .GunDATA {
+        background-color: #F4F6F7;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .OwenDATA {
+        background-color: #F4F6F7;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .Contract {
+        display: grid;
+        grid-template-columns: 100%;
+        background-color: #F4F6F7;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .GunDATA {
+        background-color: #F4F6F7;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .OwenDATA {
+        background-color: #F4F6F7;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .Contract {
+        display: grid;
+        grid-template-columns: 100%;
+        background-color: #F4F6F7;
+    }
+
+    .Video {
+        display: grid;
+        grid-template-columns: 100%;
+    }
 }
