@@ -1,0 +1,202 @@
+@font-face {
+    font-family: Archive;
+    src: url(../Fonts/Archive-Regular.woff);
+}
+
+@font-face {
+    font-family: Doyser;
+    src: url(../Fonts/B2\ SIGN\ Big\ Match.woff);
+}
+
+body {
+    margin: 0;
+}
+
+.Header {
+    background-color: #85C1E9;
+    text-align: center;
+    border: 3px solid #7F8C8D;
+    font-family: Archive;
+    color: white;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.Header h1 {
+    margin: 10px;
+}
+
+.GunDATA {
+    background-color: #F4F6F7;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.GunDATA img {
+    width: 100%;
+    justify-content: center;
+    border: 5px inset #CCD1D1;
+}
+
+.DATA_BASE {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DATA_BASE h1 {
+    background-color: #FDFEFE;
+    text-align: center;
+    border: black dashed;
+    width: 50%;
+    font-family: Doyser;
+    font-size: 50px;
+    margin: 10px;
+}
+
+.GunDATA li {
+    list-style-type: none;
+    font-size: 30px;
+    margin: 20px;
+}
+
+.OwenDATA {
+    background-color: #F4F6F7;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.OwenDATA li {
+    list-style-type: none;
+    font-size: 30px;
+    margin: 30px;
+}
+
+.OwenPicture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.OwenPicture img {
+    width: 40%;
+    border: 5px inset #CCD1D1;
+}
+
+.Header2 {
+    text-align: center;
+    font-family: Archive;
+    font-size: 20px;
+    border: black dashed;
+    margin: 0;
+    background-color: #85C1E9;
+    color: #F4F6F7;
+}
+
+.Header2 h1 {
+    margin: 10px;
+}
+
+.Contract {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #F4F6F7;
+}
+
+.Contract img {
+    width: 20%;
+}
+
+.Contract p {
+    margin-left: 5%;
+    font-size: 25px;
+}
+
+.Contract a {
+    font-size: 25px;
+    margin-left: 5%;
+    text-decoration: none;
+}
+
+.Phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.Gmail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.Discord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.VideoHeader {
+    text-align: center;
+    font-family: Archive;
+    font-size: 20px;
+    border: black double;
+    margin: 0;
+    background-color: #85C1E9;
+    color: #F4F6F7;
+}
+
+.VideoHeader h1 {
+    margin: 10px;
+}
+
+.Video {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #F4F6F7;
+}
+
+.GunVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.OwenVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.link_to_activity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px ridge black;
+}
+
+.link_to_activity a {
+    font-family: Archive;
+    text-decoration: none;
+    color: #434A4F;
+}
