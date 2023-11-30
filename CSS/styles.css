@@ -61,7 +61,7 @@ body {
   }
   
   /* Styling for the submit button */
-  .form-group input[type="submit"] {
+  button{
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;

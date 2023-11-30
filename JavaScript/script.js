@@ -1,11 +1,6 @@
-const config = {
-  backendUrl: "http://localhost:8000/", // Default backend URL
-};
-const port = 8000;
-
 // Function to validate Firstname and Lastname
 function validateName() {
-  const fullnameInput = document.getElementById("fullname");
+  const fullnameInput = document.getElementById("name");
   const names = fullnameInput.value.trim().split(" ");
   const errorElement = document.getElementById("fullnameError");
 
@@ -20,7 +15,7 @@ function validateName() {
 
 // Function to validate Student ID
 function validateStudentID() {
-  const studentIDInput = document.getElementById("studentID");
+  const studentIDInput = document.getElementById("stuid");
   const studentIDPattern = /^\d{10}$/;
   const errorElement = document.getElementById("studentIDError");
 
@@ -49,169 +44,219 @@ function validateEmail() {
   return true;
 }
 
-// Function to validate form inputs on user input
-function validateFormOnInput() {
-  validateName();
-  validateStudentID();
-  validateEmail();
-}
-
-// Function to fetch activity types from the backend
-async function fetchActivityTypes() {
-  try {
-    const response = await fetch(`http://${window.location.hostname}:${port}/getActivityType`);
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.error("Failed to fetch activity types.");
-      return [];
-    }
-  } catch (error) {
-    console.error("An error occurred while fetching activity types:", error);
-    return [];
+// Function to validate Dates
+function validateDates() {
+  const startDateInput = document.getElementById("startdate");
+  const endDateInput = document.getElementById("enddate");
+  const startDate = new Date(startDateInput.value);
+  const endDate = new Date(endDateInput.value);
+  const startDateError = document.getElementById("startDateError");
+  const endDateError = document.getElementById("endDateError");
+  if(startDateInput.value === "" || endDateInput.value === "") {
+    startDateError.textContent = "Please enter a start date.";
+    endDateError.textContent = "Please enter an end date.";
+    return false;
   }
-}
-
-// Function to populate activity types in the select element
-function populateActivityTypes(activityTypes) {
-  const activityTypeSelect = document.getElementById("activityType");
-
-  for (const type of activityTypes) {
-    const option = document.createElement("option");
-    option.value = type.id;
-    option.textContent = type.value;
-    activityTypeSelect.appendChild(option);
-  }
-}
-
-// Event listener when the page content has finished loading
-document.addEventListener("DOMContentLoaded", async () => {
-  const activityTypes = await fetchActivityTypes();
-  populateActivityTypes(activityTypes);
-});
-
-// Function to submit the form
-// Function to submit the form
-async function submitForm(event) {
-  event.preventDefault();
-
-  // Validate form inputs before submission
-  if (!validateName() || !validateStudentID() || !validateEmail()) {
-    return;
-  }
-
-  const startDateInput = document.getElementById("startDate").value;
-  const endDateInput = document.getElementById("endDate").value;
-  const startDate = new Date(startDateInput);
-  const endDate = new Date(endDateInput);
-
+  // Check if the end date is later than the start date
   if (endDate <= startDate) {
-    alert("End datetime should be after the start datetime.");
+    startDateError.textContent = "Start date must be earlier than the end date.";
+    endDateError.textContent = "End date must be later than the start date.";
+    return false;
+  } else {
+    startDateError.textContent = "";
+    endDateError.textContent = "";
+  }
+  return true;
+}
+
+//Function to validate Description min-max
+function validateDescription() {
+  const descriptionInput = document.getElementById("description");
+  const errorElement = document.getElementById("descriptionError");
+
+  const descriptionValue = descriptionInput.value.trim();
+  const minLength = 10; // Minimum length for the description
+  const maxLength = 1000; // Maximum length for the description
+
+  if (descriptionValue.length < minLength || descriptionValue.length > maxLength) {
+    errorElement.textContent = `Please enter a description between ${minLength} and ${maxLength} characters.`;
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+// Function to validate ActivityTitle
+function validateActivityTitle() {
+  const activityTitleInput = document.getElementById("activity");
+  const errorElement = document.getElementById("activityError");
+
+  const activityTitleValue = activityTitleInput.value.trim();
+  const minLength = 5; // Minimum length for the activity title
+
+  if (activityTitleValue.length === 0) {
+    errorElement.textContent = "Work/Activity Title is required.";
+    return false;
+  } else if (activityTitleValue.length < minLength) {
+    errorElement.textContent = `Please enter a title with a minimum length of ${minLength} characters.`;
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+// function to validate Location
+function validateLocation() {
+  const locationInput = document.getElementById("location");
+  const errorElement = document.getElementById("locationError");
+
+  const locationValue = locationInput.value.trim();
+  const minLength = 5; // Minimum length for the Location title
+
+  if (locationValue.length === 0) {
+    errorElement.textContent = "Location is required.";
+    return false;
+  } else if (locationValue.length < minLength) {
+    errorElement.textContent = `Please enter a title with a minimum length of ${minLength} characters.`;
+    return false; 
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+// Function to validate Type
+function validateType() {
+  const typeInput = document.getElementById("type");
+  const errorElement = document.getElementById("typeError");
+
+  if (typeInput.value === "") {
+    errorElement.textContent = "Please select the Type of Work/Activity.";
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+// Function to validate AcademicYear
+function validateAcademicYear() {
+  const academicyearInput = document.getElementById("academicyear");
+  const errorElement = document.getElementById("academicyearError");
+
+  if (academicyearInput.value === "") {
+    errorElement.textContent = "Please select the Academic Year.";
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+// Function to validate Semester
+function validateSemester() {
+  const semesterInput = document.getElementById("semester");
+  const errorElement = document.getElementById("semesterError");
+
+  if (semesterInput.value === "") {
+    errorElement.textContent = "Please select the Semester.";
+    return false;
+  } else {
+    errorElement.textContent = ""; // Clear the error message when valid
+  }
+
+  return true;
+}
+
+
+// Add event listeners for input events on required fields
+const nameInput = document.getElementById("name");
+nameInput.addEventListener("input", validateName);
+
+const studentIDInput = document.getElementById("stuid");
+studentIDInput.addEventListener("input", validateStudentID);
+
+const emailInput = document.getElementById("email");
+emailInput.addEventListener("input", validateEmail);
+
+const startDateInput = document.getElementById("startdate");
+startDateInput.addEventListener("input", validateDates);
+
+const endDateInput = document.getElementById("enddate");
+endDateInput.addEventListener("input", validateDates);
+
+const activityTitleInput = document.getElementById("activity");
+activityTitleInput.addEventListener("input", validateActivityTitle);
+
+const descriptionInput = document.getElementById("description");
+descriptionInput.addEventListener("input", validateDescription);
+
+const locationInput = document.getElementById("location");
+locationInput.addEventListener("input", validateLocation);
+
+const typeInput = document.getElementById("type");
+typeInput.addEventListener("input", validateType);
+
+const semesterInput = document.getElementById("semester");
+semesterInput.addEventListener("input", validateSemester);
+
+function submitForm() {
+  // Check if all required fields are filled
+  if (!validateName() || 
+    !validateStudentID() || 
+    !validateEmail() || 
+    !validateDates()||
+    !validateDescription()||
+    !validateActivityTitle()||
+    !validateLocation()||
+    !validateType()||
+    !validateAcademicYear()||
+    !validateSemester()) {
+    alert("Please fill in all required fields.");
     return;
   }
 
-  // Create the data object to send to the backend
-  const formData = new FormData(event.target);
-  const data = {
-    first_name: formData.get("fullname").split(" ")[0],
-    last_name: formData.get("fullname").split(" ")[1],
-    student_id: parseInt(formData.get("studentID")),
-    email: formData.get("email"),
-    title: formData.get("workTitle"),
-    type_of_work_id: parseInt(formData.get("activityType")),
-    academic_year: parseInt(formData.get("academicYear")) - 543,
-    semester: parseInt(formData.get("semester")),
-    start_date: formData.get("startDate"),
-    end_date: formData.get("endDate"),
-    location: formData.get("location"),
-    description: formData.get("description")
-  };
+  // Extract form values
+  const name = document.getElementById("name").value;
+  const stuid = document.getElementById("stuid").value;
+  const email = document.getElementById("email").value;
+  const activity = document.getElementById("activity").value;
+  const type = document.getElementById("type").value;
+  const academicyear = document.getElementById("academicyear").value;
+  const semester = document.getElementById("semester").value;
+  const startdate = document.getElementById("startdate").value;
+  const enddate = document.getElementById("enddate").value;
+  const location = document.getElementById("location").value;
+  const description = document.getElementById("description").value;
+ 
+ //show output
+  const outputHtml = `
+  <div class="outputdecoration" class="form-group">
+    <h1>This is your data</h1>
+    <hr>
+    <p><strong>Name:<strong>${name}<p>
+    <p><strong>Student ID:<strong>${stuid}<p>
+    <p><strong>Email:<strong>${email}<p>
+    <p><strong>Work/Activity Title:<strong>${activity}<p>
+    <p><strong>Type of Work/Activity:<strong>${type}<p>
+    <p><strong>Academic Year:<strong>${academicyear}<p>
+    <p><strong>Semester:<strong>${semester}<p>
+    <p><strong>Start Date/Time:<strong>${startdate}<p>
+    <p><strong>End Date/Time:<strong>${enddate}<p>
+    <p><strong>Location:<strong>${location}<p>
+    <p><strong>Description:<strong>${description}<p>
+    <hr>
+  </div>
+`;
 
-  console.log(data);
-
-  try {
-    // Send data to the backend using POST request
-    const response = await fetch(`http://${window.location.hostname}:${port}/record`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      const responseData = await response.json();
-      console.log("Form data submitted successfully!");
-
-      // Format JSON data for display
-      const formattedData = Object.entries(responseData.data)
-        .map(([key, value]) => `"${key}": "${value}"`)
-        .join("\n");
-
-      // Display success message with formatted data
-      alert(responseData.message + "\n" + formattedData);
-
-      document.getElementById("myForm").reset();
-    } else {
-      console.error("Failed to submit form data.");
-
-      // Display error message
-      alert("Failed to submit form data. Please try again.");
-    }
-  } catch (error) {
-    console.error("An error occurred while submitting form data:", error);
-  }
+  // Display output in the output div
+  const outputDiv = document.getElementById("output");
+  outputDiv.innerHTML += outputHtml;
 }
-
-// Event listener for form submission
-document.getElementById("myForm").addEventListener("submit", submitForm);
-
-// Event listeners for input validation on user input
-document.getElementById("fullname").addEventListener("input", validateName);
-document
-  .getElementById("studentID")
-  .addEventListener("input", validateStudentID);
-document.getElementById("email").addEventListener("input", validateEmail);
-
-// script.js
-
-document.addEventListener("DOMContentLoaded", function () {
-  // รับฟอร์มเมื่อถูก submit
-  document.getElementById("myForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // ป้องกันการโหลดหน้าใหม่
-
-    // เข้าถึงข้อมูลจากฟอร์ม
-    var fullname = document.getElementById("fullname").value;
-    var studentID = document.getElementById("studentID").value;
-    var email = document.getElementById("email").value;
-    var workTitle = document.getElementById("workTitle").value;
-    var activityType = document.getElementById("activityType").value;
-    var academicYear = document.getElementById("academicYear").value;
-    var semester = document.getElementById("semester").value;
-    var startDate = document.getElementById("startDate").value;
-    var endDate = document.getElementById("endDate").value;
-    var location = document.getElementById("location").value;
-    var description = document.getElementById("description").value;
-
-    // สร้างข้อความผลลัพธ์
-    var outputText =
-      "<h2>Form Submission Result</h2>" +
-      "<hr>" +
-      "<p><strong>Name:</strong> " + fullname + "</p>" +
-      "<p><strong>Student ID:</strong> " + studentID + "</p>" +
-      "<p><strong>Email:</strong> " + email + "</p>" +
-      "<p><strong>Work/Activity Title:</strong> " + workTitle + "</p>" +
-      "<p><strong>Type of Work/Activity:</strong> " + activityType + "</p>" +
-      "<p><strong>Academic Year:</strong> " + academicYear + "</p>" +
-      "<p><strong>Semester:</strong> " + semester + "</p>" +
-      "<p><strong>Start Date/Time:</strong> " + startDate + "</p>" +
-      "<p><strong>End Date/Time:</strong> " + endDate + "</p>" +
-      "<p><strong>Location:</strong> " + location + "</p>" +
-      "<p><strong>Description:</strong> " + description + "</p>" +
-      "<hr>";
-
-    // แสดงผลลัพธ์ใน div ที่กำหนด
-    document.getElementById("Output").innerHTML += outputText;
-  });
-});
