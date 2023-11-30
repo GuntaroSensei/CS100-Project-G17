@@ -10,32 +10,41 @@
 </head>
 <body>
 
+  <!-- Form Container -->
 <div class="form-container">
+  
+  <!-- Main Form -->
   <form id="myForm">
+    
+    <!-- Firstname and Lastname Field -->
     <div class="form-group">
       <label id="name-label">Name:</label>
       <input type="text" id="name" name="name" required>
       <span id="fullnameError" class="error"></span>
     </div>
-
+    
+    <!-- Student ID Field -->
     <div class="form-group">
       <label id="stuid-label">Student ID:</label>
       <input type="text" id="stuid" name="stuid" required>
       <span id="studentIDError" class="error"></span>
     </div>
-
+    
+    <!-- University Email Field -->
     <div class="form-group">
       <label id="email-label">University Email:</label>
       <input type="email" id="email" name="email" required>
       <span id="emailError" class="error"></span>
     </div>
 
+    <!-- Work/Activity Title Field -->
     <div class="form-group">
       <label id="activity-label">Work/Activity Title:</label>
       <input type="text" id="activity" name="activity">
       <span id="activityError" class="error"></span>
     </div>
 
+    <!-- Type of Work/Activity Field -->
     <div class="form-group">
       <label id="type-label">Type of Work/Activity:</label>
       <select id="type" name="type" required>
@@ -51,6 +60,7 @@
       <span id="typeError" class="error"></span>
     </div>
 
+    <!-- Academic Year Field -->
     <div class="form-group">
       <label id="academicyear-label">Academic Year:</label>
       <select id="academicyear" name="academicyear" required>
@@ -65,6 +75,7 @@
       <span id="academicyearError" class="error"></span>
     </div>
 
+    <!-- Semester Field -->
     <div class="form-group">
       <label id="semester-label">Semester:</label>
       <select id="semester" name="semester" required>
@@ -76,38 +87,43 @@
       <span id="semesterError" class="error"></span>
     </div>
 
+    <!-- Start Date/Time Field -->
     <div class="form-group">
       <label id="startDate-label">Start Date/Time:</label>
       <input type="datetime-local" id="startdate" name="startdate" required>
       <span id="startDateError" class="error"></span>
     </div>
 
+    <!-- End Date/Time Field -->
     <div class="form-group">
       <label id="endDate-label">End Date/Time:</label>
       <input type="datetime-local" id="enddate" name="enddate" required>
       <span id="endDateError" class="error"></span>
     </div>
 
+    <!-- Location Field -->
     <div class="form-group">
       <label id="location-label">Location:</label>
       <input type="text" id="location" name="location" required>
       <span id="locationError" class="error"></span>
     </div>
 
+    <!-- Description Field -->
     <div class="form-group">
       <label id="description-label">Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
         <span id="descriptionError" class="error"></span>
     </div>
     
-
-
+     <!-- Submit Button -->
     <button class="form-group" type="button" onclick="submitForm()">Submit</button>
   </form>
 </div>
 
+  <!-- Show output -->
     <div id="output" class="form-container"></div>
         
+  <!-- JavaScript -->
     <script src="../JavaScript/script.js"></script>
 </body>
 </html>
